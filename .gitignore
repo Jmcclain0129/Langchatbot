@@ -6,9 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-#prevent git from pulling this file
-newenv/
-
 # Distribution / packaging
 .Python
 build/
@@ -130,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+newenv/
 
 # Spyder project settings
 .spyderproject
