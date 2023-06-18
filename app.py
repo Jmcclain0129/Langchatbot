@@ -10,12 +10,13 @@ import streamlit as st
 def main():
     # If running on Streamlit Sharing, use the secrets management system
     if st.secrets:
-        openai_key = st.secrets["openai"]["key"]
+        os.environ['OPENAI_API_KEY'] = st.secrets["openai"]["key"]
     # If running locally, load from .env file
     else:
         from dotenv import load_dotenv
         load_dotenv()
-        openai_key = os.getenv("OPENAI_KEY")
+        os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_KEY")
+
 
     st.set_page_config(page_title="Ask your PDF")
     st.header("Ask your PDF")
