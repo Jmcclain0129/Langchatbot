@@ -1,14 +1,22 @@
-from dotenv import load_dotenv
-import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
+import os
+import streamlit as st
 
 def main():
-    load_dotenv()
+    # If running on Streamlit Sharing, use the secrets management system
+    if st.secrets:
+        openai_key = st.secrets["openai"]["key"]
+    # If running locally, load from .env file
+    else:
+        from dotenv import load_dotenv
+        load_dotenv()
+        openai_key = os.getenv("OPENAI_KEY")
+
     st.set_page_config(page_title="Ask your PDF")
     st.header("Ask your PDF")
 
